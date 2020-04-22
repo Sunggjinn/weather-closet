@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 할일 - 200423
+1) 위젯 움직임 유지할지(빼도 될 것 같음! 유지한다면 header 전체에 적용)
+2) 하루치 날씨만 가져와도 예쁜지 
+3) 제목 정렬 등
+4) 모바일 / 노트북 화면 확인 -->
+
+<head>
+    <!-- head 안에 들어 갈 어떤 요소들을 여기에 넣습니다 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Closet</title>
+    <br>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <!-- JS 임포트 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // document.ready 함수 - 중괄호 안 내용들을 새로고침 때마다 실행해달라
+        $(document).ready(function() {
+
+        });
+
+        // 버튼 누를 때 날씨 카드와 스타일 카드 보여주는 onclick 함수 추가
+    </script>
+</head>
+
+<body>
+    <!-- header에서 페이지 소개 (제목, 기능) -->
+    <header>
+        <h1>Weather Closet</h1>
+        <p>날씨에 맞게 옷을 입어봅시다</p>
+    </header>
+
+    <!-- main에 중요한 정보 (main은 한 개만): 날씨, 스타일 정보 -->
+    <main>
+
+        <!-- 유저가 동 정보를 입력하는 곳 -->
+        <div class="area_info">
+            <label for="name">주소(동 단위):
+            </label>
+            <input type="text" id="name" name="name" placeholder="예) 연희동" required minlength="2" maxlength="8" size="10">
+            <button class="weather_btn" type="button">
+                날씨 확인
+            </button>
+        </div>
+
+        <!-- 날씨 정보를 보여주는 카드 -->
+        <div class="weather_info">
+            <div class="card">
+
+                <h2>Seoul</h2>
+                <h3>Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span>
+                </h3>
+                <h1>23°</h1>
+                <div class="sky">
+                    <div class="sun"></div>
+                    <div class="cloud">
+                        <div class="circle-small"></div>
+                        <div class="circle-tall"></div>
+                        <div class="circle-medium"></div>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <td>TUE</td>
+                        <td>WED</td>
+                        <td>THU</td>
+                        <td>FRI</td>
+                        <td>SAT</td>
+                    </tr>
+                    <tr>
+                        <td>30°</td>
+                        <td>34°</td>
+                        <td>36°</td>
+                        <td>34°</td>
+                        <td>37°</td>
+                    </tr>
+                    <tr>
+                        <td>17°</td>
+                        <td>22°</td>
+                        <td>19°</td>
+                        <td>23°</td>
+                        <td>19°</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 스타일 정보를 보여주는 카드 -->
+        <div class="style_info">
+
+        </div>
+
+    </main>
+    <br>
+    <!-- footer에서 아이콘 출처, 날씨정보 출처, 개발자 정보  -->
+    <footer>
+        <p>Icons made by
+            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+                Freepik
+            </a> and from
+            <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+                Pixel perfect
+            </a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </p>
+        <p>Weather forecast from <a href="https://www.naver.com/" title="Naver">
+            Naver
+        </a>
+        </p>
+        <p>
+            &copy; 이성진, 이진명
+        </p>
+
+    </footer>
+</body>
+
+</html>
