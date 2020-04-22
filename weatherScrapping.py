@@ -3,7 +3,7 @@ import urllib
 import bs4
 import html5lib
 
-input_area = '서울'
+input_area = input('동을 입력해주세요 : ')
 enc_area = urllib.parse.quote(input_area + '날씨')
 
 url = 'https://search.naver.com/search.naver?ie=utf8&query='+ enc_area
