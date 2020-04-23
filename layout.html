@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- 할일 - 200423
-1) 위젯 움직임 유지할지(빼도 될 것 같음! 유지한다면 header 전체에 적용)
-2) 하루치 날씨만 가져와도 예쁜지 
-3) 제목 정렬 등
-4) 모바일 / 노트북 화면 확인 -->
-
 <head>
     <!-- head 안에 들어 갈 어떤 요소들을 여기에 넣습니다 -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- horizontal scroll is suppressed in any orientation and the user can zoom in if they want to. -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
     <title>Weather Closet</title>
     <br>
     <link rel="stylesheet" type="text/css" href="mystyle.css">
@@ -42,59 +37,31 @@
             </label>
             <input type="text" id="name" name="name" placeholder="예) 연희동" required minlength="2" maxlength="8" size="10">
             <button class="weather_btn" type="button">
-                날씨 확인
+                Click
             </button>
         </div>
 
-        <!-- 날씨 정보를 보여주는 카드 -->
-        <div class="weather_info">
+        <!-- 날씨와 스타일 정보를 보여주는 카드 -->
+        <div class="info">
+
             <div class="card">
-
-                <h2>Seoul</h2>
-                <h3>Cloudy<span>Wind 10km/h <span class="dot">•</span> Precip 0%</span>
-                </h3>
-                <h1>23°</h1>
-                <div class="sky">
-                    <div class="sun"></div>
-                    <div class="cloud">
-                        <div class="circle-small"></div>
-                        <div class="circle-tall"></div>
-                        <div class="circle-medium"></div>
-                    </div>
-                </div>
-                <table>
-                    <tr>
-                        <td>TUE</td>
-                        <td>WED</td>
-                        <td>THU</td>
-                        <td>FRI</td>
-                        <td>SAT</td>
-                    </tr>
-                    <tr>
-                        <td>30°</td>
-                        <td>34°</td>
-                        <td>36°</td>
-                        <td>34°</td>
-                        <td>37°</td>
-                    </tr>
-                    <tr>
-                        <td>17°</td>
-                        <td>22°</td>
-                        <td>19°</td>
-                        <td>23°</td>
-                        <td>19°</td>
-                    </tr>
-                </table>
+                <h2>서대문구 연희동</h2>
+                <h3>구름 많음</h3>
+                <img class="weather" src="weather-sunrise.png" alt="오늘 하늘은?" width="110" loading="lazy">
+                <h1 class="tempnow">18°</h1>
+                <br>어제보다 4&deg; 높아요
+                <h3>강수확률 0%</h3>
+                <h2>How about...</h2>
+                <h3>얇은 가디건/니트, 맨투맨, 얇은 자켓, 청바지</h3>
+                <img class="inner" src="inner2_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+                <img class="bottoms" src="bottoms1_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+                <img class="outer" src="outer2_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
             </div>
-        </div>
-
-        <!-- 스타일 정보를 보여주는 카드 -->
-        <div class="style_info">
-
         </div>
 
     </main>
     <br>
+    
     <!-- footer에서 아이콘 출처, 날씨정보 출처, 개발자 정보  -->
     <footer>
         <p>Icons made by
@@ -106,14 +73,14 @@
             </a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
         </p>
         <p>Weather forecast from <a href="https://www.naver.com/" title="Naver">
-            Naver
-        </a>
+                Naver
+            </a>
         </p>
         <p>
             &copy; 이성진, 이진명
         </p>
-
     </footer>
+    
 </body>
 
 </html>
