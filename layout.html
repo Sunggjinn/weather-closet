@@ -14,34 +14,43 @@
     <!-- JS 임포트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        // document.ready 함수 - 중괄호 안 내용들을 새로고침 때마다 실행해달라
-        // $(document).ready(function() {
-        //    }
-
         function show_info() {
-            // input_area 값을 가져와서 value라고 한다
+            // input_area 값을 value로 정의한다
             let value = $('#input_area').val();
+            // input_area를 비운다
+            $('#input_area').val('');
+            // 입력 안했으면 alert를 띄운다
             if (value == '') {
-                // else if -> 중복값이 존재하는 경우 함수 추가해야 함!
-                alert('다시 입력해주세요!');
-                $('#input_area').focus();
-                // 이 경우 종료해라
+                alert('지역을 입력해주세요!');
                 return;
             }
 
-            // 중복되는 구 명단에서 등장 횟수를 overlap이라고 한다 
-            // let overlap = $().val();(일단 대충 적음)
-            // else if (overlap >= 1) {
-            //     // 중복 구 중에서 어디인지 선택하는 양식 띄우기
-            //     // 유저가 선택하면 다음으로 넘어간다(??)
+            // 시군구 이름을 잘못 입력한 것이라면, alert를 띄운다
+            // else if (어쩌구저쩌구) {
+            //     alert('다시 입력해주세요!');
+            //     return;
             // }
 
-            // 기본으로 보여주는 날씨 카드(ws_default)는 닫고, 유저가 입력한 구에 따라 날씨와 스타일 카드(ws_info) 열기
-            // if else, hide 는 필요 없음. 유저가 새로 입력하면 그 정보를 불러와서 보여줘야 하니까!
-            else if ($('#ws_default').css('display') == 'block') {
+            // 이름이 같은 시군구가 있다면, 어디인지 물어본다
+            // box 만들어서, select 할 수 있도록 할 것 - box 펼쳐지는 animation을 codepen에서 가져오기
+            // 그러면 선택된 value를 value_unique라고 한다 
+            else if (value == '강서구' || value == '강서') {
+
+            } else if (value == '남구') {
+
+            } else if (value == '동구') {
+
+            } else if (value == '북구') {
+
+            } else if (value == '서구') {
+
+            } else if (value == '중구') {
+
+            } else if ($('#ws_default').css('display') == 'block') {
                 $('#ws_default').hide();
                 $('#ws_info').show();
             }
+
         }
     </script>
 </head>
@@ -59,17 +68,30 @@
 
         <!-- 유저가 구 정보를 입력하는 곳 -->
         <div id="area_info">
-            <label for="name" id="input_label">주소 (시군구 단위) :</label>
-            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="8">
+            <label for="input_area" id="input_label"><span class="bold">주소 </span>(시군구 단위) :</label>
+            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="10" size="10">
             <button class="weather_btn" type="button" onclick="show_info()">Click</button>
             </button>
         </div>
 
+        <!-- 이름이 같은 지역 중 어디인지 선택할 수 있는 곳 -->
+        <div>
+            <label for="pet-select">Choose a pet:</label>
+            <select name="pets" id="pet-select">
+                <option value="">--Please choose an option--</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="hamster">Hamster</option>
+                <option value="parrot">Parrot</option>
+                <option value="spider">Spider</option>
+                <option value="goldfish">Goldfish</option>
+            </select>
+        </div>
         <!-- 날씨와 스타일 정보를 보여주는 카드 -->
         <!-- wc는 weather-style의 약자  -->
         <div id="ws_default">
             <div class="card">
-                <h2>인천시 중구</h2>
+                <h2>인천시 미추홀구</h2>
                 <h3>구름 많음</h3>
                 <img class="weather_icon" src="weather-cloudy.png" alt="오늘 하늘은?" width="110" loading="lazy">
                 <h1 class="temp_now">16°</h1>
