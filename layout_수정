@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+    <title>Weather Closet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        /* relative position 이해 안 됨 */
+     /* color palette: https://coolors.co/2f587b-edeff2-46bfdf-4c96cb-2771b1 */
+
+     * {
+         word-break: keep-all;
+     }
+
+     header {
+         color: #000000;
+         text-align: center;
+         width: 100%;
+         overflow: auto;
+         padding: 8pt 0 4pt 0;
+     }
+
+     main {
+         color: #2771b1;
+         text-align: center;
+         width: 100%;
+         overflow: auto;
+         padding: 8pt 0 4pt 0;
+     }
+
+     #input_label {
+         font-weight: 700;
+     }
+
+     .weather_btn {
+         border: 0;
+         line-height: 2.5;
+         padding: 0 20px;
+         font-size: 1rem;
+         text-align: center;
+         color: #ffffff;
+         border-radius: 20px;
+         background-color: #2771b1;
+     }
+
+     .weather_btn:hover {
+         background-color: #4c96cb;
+         /* hover할 때랑 click할 때 어떻게 손으로 바꾸는지 궁금 (페이지 이동 없이 원페이지인 경우) */
+     }
+
+     .weather_btn:active {
+         background-color: #46bfdf;
+     }
+
+     footer {
+         font-size: 11px;
+         color: #2b7494;
+         text-align: center;
+     }
+
+     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+     html,
+     body {
+         background-color: #F3F3F3;
+         font-family: 'Roboto', sans-serif;
+     }
+
+     #ws_default {
+         display: block;
+     }
+
+     #ws_info {
+         display: none;
+     }
+
+     .card {
+         margin: 0 auto;
+         margin-top: 3%;
+         padding: 5px 30px;
+         width: 290px;
+         height: 620px;
+         border-radius: 3px;
+         background-color: #fff;
+         box-shadow: 1px 2px 10px rgba(0, 0, 0, .2);
+         /* -webkit-animation: open 2s cubic-bezier(.39, 0, .38, 1); */
+     }
+
+     h1,
+     h2,
+     h3,
+     h4 {
+         position: relative;
+     }
+
+     h1 {
+         margin: 10px auto;
+         color: #000000;
+         font-size: 2.5em;
+         font-weight: 600;
+         /* line-height: 1em; */
+     }
+
+     .temp_now {
+         color: #2771b1;
+         font-weight: 300;
+         font-size: 2em;
+         text-align: center;
+         line-height: 1em;
+         /* -webkit-animation: up 2s cubic-bezier(.39, 0, .38, 1) .2s; */
+     }
+
+     h2 {
+         color: #2771b1;
+         font-weight: 600;
+         font-size: 1.75em;
+         text-align: center;
+         /* -webkit-animation: up 2s cubic-bezier(.39, 0, .38, 1); */
+     }
+
+     h3 {
+         color: #2771b1;
+         font-weight: 600;
+         font-size: 1em;
+         text-align: center;
+         /* -webkit-animation: up 2s cubic-bezier(.39, 0, .38, 1) .1s; */
+     }
+
+     h4 {
+         color: #777;
+         font-weight: 400;
+         font-size: 1em;
+         text-align: center;
+         /* -webkit-animation: up 2s cubic-bezier(.39, 0, .38, 1) .1s; */
+     }
+
+     .weather_desc {
+         line-height: 0.5em;
+     }
+
+     .style_rec {
+         color: #666;
+         text-align: center;
+         font-weight: 400;
+         font-size: 1em;
+         line-height: 1.5em;
+     }
+ </style>
+    <script>
+        function fill_the_blank(){
+            let value = $('#input_area').val();
+            let temp_html = '<h2>' + value + '</h2>';
+            $('#area').append(temp_html);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+    </header>
+    <main>
+        <div id="area_info">
+            <label id="input_label">주소 (시군구 단위) :</label>
+            <form action="/report" method="get">
+                 <input id="input_area" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="8" required name="area" />
+                 <button class="weather_btn">Click</button>
+            </form>
+        </div>
+
+        <div id="ws_default">
+            <div class="card">
+                <h2 id="area">"인천시 중구"</h2>
+                <h3>구름 많음</h3>
+                <img class="weather_icon" src="weather-cloudy.png" alt="오늘 하늘은?" width="110">
+                <h1 class="temp_now">16°</h1>
+                <div class="weather_desc">
+                    <h4>어제보다 4&deg; 높아요</h4>
+                    <h4>강수확률 0%</h4>
+                    <h4>미세먼지 좋음</h4>
+                </div>
+                <h2>How about...</h2>
+                <h4 class="style_rec">얇은 가디건/니트, 맨투맨, 얇은 자켓, 청바지</h4>
+                <img class="inner" src="inner2_17-19.png" alt="뭐 입지?" width="70">
+                <img class="bottoms" src="bottoms1_17-19.png" alt="뭐 입지?" width="70">
+                <img class="outer" src="outer2_17-19.png" alt="뭐 입지?" width="70">
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
