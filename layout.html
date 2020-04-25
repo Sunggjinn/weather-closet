@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- 동이 존재하지 않는 경우 추가해야  -->
+<!-- 유저가 입력한 구가 존재하지 않는 경우 추가해야  -->
 
 <head>
     <!-- head 안에 들어 갈 어떤 요소들을 여기에 넣습니다 -->
@@ -36,7 +36,7 @@
             //     // 유저가 선택하면 다음으로 넘어간다(??)
             // }
 
-            // 기본으로 보여주는 날씨 카드(ws_default)는 닫고, 유저가 입력한 동에 따라 날씨와 스타일 카드(ws_info) 열기
+            // 기본으로 보여주는 날씨 카드(ws_default)는 닫고, 유저가 입력한 구에 따라 날씨와 스타일 카드(ws_info) 열기
             // if else, hide 는 필요 없음. 유저가 새로 입력하면 그 정보를 불러와서 보여줘야 하니까!
             else if ($('#ws_default').css('display') == 'block') {
                 $('#ws_default').hide();
@@ -57,10 +57,10 @@
     <!-- main에 중요한 정보 (main은 한 개만): 날씨, 스타일 정보 -->
     <main>
 
-        <!-- 유저가 동 정보를 입력하는 곳 -->
+        <!-- 유저가 구 정보를 입력하는 곳 -->
         <div id="area_info">
-            <label for="name" id="input_label">주소(구 단위):</label>
-            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="10">
+            <label for="name" id="input_label">주소 (시군구 단위) :</label>
+            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="8">
             <button class="weather_btn" type="button" onclick="show_info()">Click</button>
             </button>
         </div>
@@ -69,7 +69,7 @@
         <!-- wc는 weather-style의 약자  -->
         <div id="ws_default">
             <div class="card">
-                <h2>종로구</h2>
+                <h2>인천시 중구</h2>
                 <h3>구름 많음</h3>
                 <img class="weather_icon" src="weather-cloudy.png" alt="오늘 하늘은?" width="110" loading="lazy">
                 <h1 class="temp_now">16°</h1>
@@ -88,7 +88,7 @@
 
         <div id="ws_info">
             <div class="card">
-                <!-- 유저가 동 정보를 1)입력했고 2)동명이동 판별 절차를 거친 후, 입력값이 유효하면(입력 여부 O && 입력값이 동명이동이 없으면) 다음의 정보를 보여준다  -->
+                <!-- 유저가 구 정보를 1)입력했고 2)동명이구 판별 절차를 거친 후, 입력값이 유효하면(입력 여부 O && 입력값이 동명이구이 없으면) 다음의 정보를 보여준다  -->
                 <h2>서대문구</h2>
                 <h3>맑음</h3>
                 <img class="weather_icon" src="weather-sunny.png" alt="오늘 하늘은?" width="110" loading="lazy">
