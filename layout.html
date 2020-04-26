@@ -47,29 +47,8 @@
             if (value == '강서구' || value == '강서') {
                 $("#input_area").hide();
                 $("#gangseogu_select").show();
-                // let gangseogu_selected = $('#gangseogu_select').val();
-                // } else if (value == '남구') {
-                //     $("#input_area").hide();
-                //     $('#namgu_select').show();
-                //     // let namgu_selected = $('#namgu_select').val();
-                // } else if (value == '동구') {
-                //     $("#input_area").hide();
-                //     $('#donggu_select').show();
-                //     // let donggu_selected = $('#donggu_select').val();
-                // } else if (value == '서구') {
-                //     $("#input_area").hide();
-                //     $('#seogu_select').show();
-                //     // let seogu_selected = $('#seogu_select').val();
-                // } else if (value == '북구') {
-                //     $("#input_area").hide();
-                //     $('#bukgu_select').show();
-                //     // let bukgu_selected = $('#bukgu_select').val();
-                // } else if (value == '중구') {
-                //     $("#input_area").hide();
-                //     $('#junggu_select').show();
-                //     // let junggu_selected = $('#junggu_select').val();
-                // }
             }
+        }
     </script>
 </head>
 
@@ -100,7 +79,62 @@
                 <option value="부산시 강서구">부산시 강서구</option>
                 <option value="다시 입력하기">다시 입력하기</option>
             </select>
-            <!-- <클릭 버튼> -->
+
+            <select name="namgu_select" id="namgu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
+                <option value="인천시 미추홀구">인천시 미추홀구</option>
+                <option value="광주시 남구">광주시 남구</option>
+                <option value="포항시 남구">포항시 남구</option>
+                <option value="부산시 남구">부산시 남구</option>
+                <option value="울산시 남구">울산시 남구</option>
+                <option value="대구시 남구">대구시 남구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
+            </select>
+
+            <select name="donggu_select" id="donggu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
+                <option value="인천시 동구">인천시 동구</option>
+                <option value="대전시 동구">대전시 남구</option>
+                <option value="광주시 동구">광주시 동구</option>
+                <option value="부산시 동구">부산시 동구</option>
+                <option value="울산시 동구">울산시 동구</option>
+                <option value="대구시 동구">대구시 동구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
+            </select>
+
+            <select name="seogu_select" id="seogu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
+                <option value="인천시 서구">인천시 서구</option>
+                <option value="대전시 서구">대전시 서구</option>
+                <option value="광주시 서구">광주시 서구</option>
+                <option value="부산시 서구">부산시 서구</option>
+                <option value="대구시 서구">대구시 서구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
+            </select>
+
+            <select name="bukgu_select" id="bukgu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
+                <option value="광주시 북구">광주시 북구</option>
+                <option value="포항시 북구">포항시 북구</option>
+                <option value="부산시 북구">부산시 북구</option>
+                <option value="울산시 북구">울산시 북구</option>
+                <option value="대구시 북구">대구시 북구</option>
+                <option value="인천시 부평구">인천시 부평구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
+            </select>
+
+            <select name="junggu_select" id="junggu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
+                <option value="서울시 중구">서울시 중구</option>
+                <option value="인천시 중구">인천시 중구</option>
+                <option value="대전시 중구">대전시 중구</option>
+                <option value="부산시 중구">부산시 중구</option>
+                <option value="울산시 중구">울산시 중구</option>
+                <option value="대구시 중구">대구시 중구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
+            </select>
+
+            <!-- 버튼 -->
             <button class="weather_btn" onclick="give_response()">Click</button>
             </button>
         </div>
