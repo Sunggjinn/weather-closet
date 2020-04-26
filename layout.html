@@ -1,3 +1,5 @@
+<!-- select 값 가져오는 거 잘 안 되고, 새로 input으로 들어가는 게 잘 안 됩니다  -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,47 +16,60 @@
     <!-- JS 임포트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        function show_info() {
+        function give_response() {
             // input_area 값을 value로 정의한다
             let value = $('#input_area').val();
             // input_area를 비운다
             $('#input_area').val('');
-            // 입력 안했으면 alert를 띄운다
+            is_empty(value);
+            is_null(value);
+            is_samename(value);
+            // let selected = $('.choose_gu option:selected').text();
+        }
+
+        function is_empty(value) {
             if (value == '') {
                 alert('지역을 입력해주세요!');
                 return;
             }
-
-            // 시군구 이름을 잘못 입력한 것이라면, alert를 띄운다
-            // else if (어쩌구저쩌구) {
-            //     alert('다시 입력해주세요!');
-            //     return;
-            // }
-
-            // 이름이 같은 시군구가 있다면, 어디인지 물어본다
-            // box 만들어서, select 할 수 있도록 할 것 - box 펼쳐지는 animation을 codepen에서 가져오기
-            // 그러면 선택된 value를 value_unique라고 한다 
-            else if (value == '강서구' || value == '강서') {
-                $("#input_area").hide();
-                $('#gsgu_select').show();
-                // replaceWith도 있다는데 input을 select로 바꾸고 싶은 경우에 어떻게 사용하면 좋을지 잘 모르겠음..
-
-                // } else if (value == '남구') {
-
-                // } else if (value == '동구') {
-
-                // } else if (value == '북구') {
-
-                // } else if (value == '서구') {
-
-                // } else if (value == '중구') {
-
-            } else if ($('#ws_default').css('display') == 'block') {
-                $('#ws_default').hide();
-                $('#ws_info').show();
-            }
-
         }
+
+        function is_null(value) {
+            // scrapping해서 결과값이 null이라면 어떻게 가져와야 하나??
+            if (value == 'null') {
+                $('#ws_default').hide();
+                $('#null_notice').show();
+                return;
+            }
+        }
+
+        function is_samename(value) {
+            if (value == '강서구' || value == '강서') {
+                $("#input_area").hide();
+                $("#gangseogu_select").show();
+                // let gangseogu_selected = $('#gangseogu_select').val();
+                // } else if (value == '남구') {
+                //     $("#input_area").hide();
+                //     $('#namgu_select').show();
+                //     // let namgu_selected = $('#namgu_select').val();
+                // } else if (value == '동구') {
+                //     $("#input_area").hide();
+                //     $('#donggu_select').show();
+                //     // let donggu_selected = $('#donggu_select').val();
+                // } else if (value == '서구') {
+                //     $("#input_area").hide();
+                //     $('#seogu_select').show();
+                //     // let seogu_selected = $('#seogu_select').val();
+                // } else if (value == '북구') {
+                //     $("#input_area").hide();
+                //     $('#bukgu_select').show();
+                //     // let bukgu_selected = $('#bukgu_select').val();
+                // } else if (value == '중구') {
+                //     $("#input_area").hide();
+                //     $('#junggu_select').show();
+                //     // let junggu_selected = $('#junggu_select').val();
+                // }
+            }
     </script>
 </head>
 
@@ -71,7 +86,6 @@
 
         <!-- 유저가 구 정보를 입력하는 곳 -->
         <div>
-
             <!-- <div id="area_info"> -->
             <label for="input_area" id="input_label"><span class="bold">주소 </span>(시군구 단위) :</label>
             <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="10">
@@ -79,20 +93,94 @@
 
             <!-- 이름이 같은 지역 중 어디인지 선택할 수 있는 곳 -->
             <!-- <div class="area_select"> -->
-            <select name="gsgu_select" id="gsgu_select" class="text_box">
+
+            <select name="gangseogu_select" id="gangseogu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
                 <option value="서울시 강서구">서울시 강서구</option>
                 <option value="부산시 강서구">부산시 강서구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
             </select>
-            <!-- </div> -->
-
             <!-- <클릭 버튼> -->
-            <button class="weather_btn" type="button" onclick="show_info()">Click</button>
+            <button class="weather_btn" onclick="give_response()">Click</button>
             </button>
-
         </div>
 
+
+
+        <div id="null_notice">
+            <div class="card_null">
+                <h3>앗,
+                    <br> 입력하신 지역에 관한
+                    <br> 정보를 찾지 못했습니다.
+                    <br> 다시 입력해주세요!</h3>
+
+            </div>
+        </div>
+
+        <select name="gangseogu_select" id="gangseogu_select" class="text_box">
+            <option value="선택해주세요">--선택해주세요--</option>
+            <option value="서울시 강서구">서울시 강서구</option>
+            <option value="부산시 강서구">부산시 강서구</option>
+            <option value="다시 입력하기">다시 입력하기</option>
+        </select>
+
+        <!-- <select name="namgu_select" id="namgu_select" class="text_box">
+            <option value="선택해주세요">--선택해주세요--</option>
+            <option value="인천시 미추홀구">인천시 미추홀구</option>
+            <option value="광주시 남구">광주시 남구</option>
+            <option value="포항시 남구">포항시 남구</option>
+            <option value="부산시 남구">부산시 남구</option>
+            <option value="울산시 남구">울산시 남구</option>
+            <option value="대구시 남구">대구시 남구</option>
+            <option value="다시 입력하기">다시 입력하기</option>
+        </select>
+
+        <select name="donggu_select" id="donggu_select" class="text_box">
+            <option value="선택해주세요">--선택해주세요--</option>
+            <option value="인천시 동구">인천시 동구</option>
+            <option value="대전시 동구">대전시 남구</option>
+            <option value="광주시 동구">광주시 동구</option>
+            <option value="부산시 동구">부산시 동구</option>
+            <option value="울산시 동구">울산시 동구</option>
+            <option value="대구시 동구">대구시 동구</option>
+            <option value="다시 입력하기">다시 입력하기</option>
+        </select>
+
+        <select name="seogu_select" id="seogu_select" class="text_box">
+            <option value="선택해주세요">--선택해주세요--</option>
+            <option value="인천시 서구">인천시 서구</option>
+            <option value="대전시 서구">대전시 서구</option>
+            <option value="광주시 서구">광주시 서구</option>
+            <option value="부산시 서구">부산시 서구</option>
+            <option value="대구시 서구">대구시 서구</option>
+            <option value="다시 입력하기">다시 입력하기</option>
+        </select>
+
+        <select name="bukgu_select" id="bukgu_select" class="text_box">
+            <option value="선택해주세요">--선택해주세요--</option>
+            <option value="광주시 북구">광주시 북구</option>
+            <option value="포항시 북구">포항시 북구</option>
+            <option value="부산시 북구">부산시 북구</option>
+            <option value="울산시 북구">울산시 북구</option>
+            <option value="대구시 북구">대구시 북구</option>
+            <option value="인천시 부평구">인천시 부평구</option>
+            <option value="다시 입력하기">다시 입력하기</option>
+        </select>
+
+        <select name="junggu_select" id="junggu_select" class="text_box">
+            <option value="선택해주세요">--선택해주세요--</option>
+            <option value="서울시 중구">서울시 중구</option>
+            <option value="인천시 중구">인천시 중구</option>
+            <option value="대전시 중구">대전시 중구</option>
+            <option value="부산시 중구">부산시 중구</option>
+            <option value="울산시 중구">울산시 중구</option>
+            <option value="대구시 중구">대구시 중구</option>
+            <option value="다시 입력하기">다시 입력하기</option>
+        </select> -->
+
+
         <!-- 날씨와 스타일 정보를 보여주는 카드 -->
-        <!-- wc는 weather-style의 약자  -->
+        <!-- ws는 weather-style의 약자  -->
         <div id="ws_default">
             <div class="card">
                 <h2>인천시 미추홀구</h2>
