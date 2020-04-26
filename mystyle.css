@@ -25,6 +25,10 @@
             font-weight: 700;
         }
         
+        .text_box {
+            width: 120px;
+        }
+        
         .weather_btn {
             border: 0;
             line-height: 2.5;
@@ -56,6 +60,10 @@
         body {
             background-color: #F3F3F3;
             font-family: 'Roboto', sans-serif;
+        }
+        
+        #gsgu_select {
+            display: none;
         }
         
         #ws_default {

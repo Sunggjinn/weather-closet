@@ -35,16 +35,19 @@
             // box 만들어서, select 할 수 있도록 할 것 - box 펼쳐지는 animation을 codepen에서 가져오기
             // 그러면 선택된 value를 value_unique라고 한다 
             else if (value == '강서구' || value == '강서') {
+                $("#input_area").hide();
+                $('#gsgu_select').show();
+                // replaceWith도 있다는데 input을 select로 바꾸고 싶은 경우에 어떻게 사용하면 좋을지 잘 모르겠음..
 
-            } else if (value == '남구') {
+                // } else if (value == '남구') {
 
-            } else if (value == '동구') {
+                // } else if (value == '동구') {
 
-            } else if (value == '북구') {
+                // } else if (value == '북구') {
 
-            } else if (value == '서구') {
+                // } else if (value == '서구') {
 
-            } else if (value == '중구') {
+                // } else if (value == '중구') {
 
             } else if ($('#ws_default').css('display') == 'block') {
                 $('#ws_default').hide();
@@ -67,26 +70,27 @@
     <main>
 
         <!-- 유저가 구 정보를 입력하는 곳 -->
-        <div id="area_info">
+        <div>
+
+            <!-- <div id="area_info"> -->
             <label for="input_area" id="input_label"><span class="bold">주소 </span>(시군구 단위) :</label>
-            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="10" size="10">
+            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="10">
+            <!-- </div> -->
+
+            <!-- 이름이 같은 지역 중 어디인지 선택할 수 있는 곳 -->
+            <!-- <div class="area_select"> -->
+            <select name="gsgu_select" id="gsgu_select" class="text_box">
+                <option value="서울시 강서구">서울시 강서구</option>
+                <option value="부산시 강서구">부산시 강서구</option>
+            </select>
+            <!-- </div> -->
+
+            <!-- <클릭 버튼> -->
             <button class="weather_btn" type="button" onclick="show_info()">Click</button>
             </button>
+
         </div>
 
-        <!-- 이름이 같은 지역 중 어디인지 선택할 수 있는 곳 -->
-        <div>
-            <label for="pet-select">Choose a pet:</label>
-            <select name="pets" id="pet-select">
-                <option value="">--Please choose an option--</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="hamster">Hamster</option>
-                <option value="parrot">Parrot</option>
-                <option value="spider">Spider</option>
-                <option value="goldfish">Goldfish</option>
-            </select>
-        </div>
         <!-- 날씨와 스타일 정보를 보여주는 카드 -->
         <!-- wc는 weather-style의 약자  -->
         <div id="ws_default">
