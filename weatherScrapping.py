@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 from urllib.request import urlopen, Request
 import urllib
 import bs4
@@ -5,8 +6,11 @@ import requests
 import html5lib
 
 
-def get_weather(area):
-    url = f"https://search.naver.com/search.naver?ie=utf8&query={area}+날씨"
+def weather_search(area):
+    input_area = area
+
+    enc_area = urllib.parse.quote(input_area+'날씨')
+    url = 'https://search.naver.com/search.naver?ie=utf8&query='+enc_area
     req = Request(url)
     page = urlopen(req)
     html = page.read()
@@ -26,6 +30,5 @@ def get_weather(area):
     else:
         weather = 'cloudful'
 
-    weathers = temp
-
+    weathers = [temp, weather, min_temp, max_temp]
     return weathers
