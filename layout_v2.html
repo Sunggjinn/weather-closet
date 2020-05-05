@@ -73,42 +73,44 @@
 
         }
 
-        function f6() {
-            // 스크래핑 결과를 받아온다 (어떻게 하는지 찾아봐야)
-            // f7을 실행한다 
-            $.ajax({
-                type: "POST",
-                url: "/",
-                data: {},
-                success: function(response) {
-                    if (response['result'] == 'success') {
-                        alert(response['msg']);
-                    }
-                }
-            })
-        }
+        // function f6() {
+        //     // 스크래핑 결과를 받아온다 (어떻게 하는지 찾아봐야)
+        //     // f7을 실행한다 
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "/",
+        //         data: {},
+        //         success: function (response) {
+        //             if (response['result'] == 'success') {
+        //                 alert(response['msg']);
+        //             }
+        //         }
+        //     })
+        //     f7();
+        // }
 
-        function f7() {
-            // 결과값이 null이라면 alert를 띄우고 focus한다 
-            // null이 아니라면 ws_info를 보여주고, ws_default 닫고, input box를 비운다 
-            $.ajax({
-                type: "GET", //POST 방식으로 요청하겠다.
-                url: "/", // 이 url에 요청하겠다. 
-                data: {}, // 요청하면서 함께 줄 데이터 (GET일때는 비워둠)
-                success: function(response) {
-                    if (response['result'] == 'null') {
-                        alert('다시 입력해주세요');
-                        console.log('error: null');
-                        $('#input_area').focus();
-                    } else {
-                        $("#input_area").show();
-                        $('#weather_btn').show();
-                        $('#samename_btn').hide();
-                        $('#ws_info').show();
-                    }
-                }
-            })
-        }
+        // function f7() {
+        //     // 결과값이 null이라면 alert를 띄우고 focus한다 
+        //     // null이 아니라면 ws_info를 보여주고, ws_default 닫고, input box를 비운다 
+        //     $.ajax({
+        //         type: "GET", //POST 방식으로 요청하겠다.
+        //         url: "/", // 이 url에 요청하겠다. 
+        //         data: {}, // 요청하면서 함께 줄 데이터 (GET일때는 비워둠)
+        //         success: function (response) {
+        //             if (response['result'] == 'null') {
+        //                 alert('다시 입력해주세요');
+        //                 console.log('error: null');
+        //                 $('#input_area').focus();
+        //             }
+        //             else {
+        //                 $("#input_area").show();
+        //                 $('#weather_btn').show();
+        //                 $('#samename_btn').hide();
+        //                 $('#ws_info').show();
+        //             }
+        //         }
+        //     })
+        // }
     </script>
 
 </head>

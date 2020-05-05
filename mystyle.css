@@ -21,11 +21,11 @@
             padding: 8pt 0 4pt 0;
         }
         
-        .bold {
+        #input_label {
             font-weight: 700;
         }
         
-        .weather_btn {
+        .btn {
             border: 0;
             line-height: 2.5;
             padding: 0 20px;
@@ -36,13 +36,27 @@
             background-color: #2771b1;
         }
         
-        .weather_btn:hover {
+        #weather_btn {
+            display: inline-block;
+        }
+        
+        #samename_btn {
+            display: none;
+        }
+        
+        .btn:hover {
             background-color: #4c96cb;
             /* hover할 때랑 click할 때 어떻게 손으로 바꾸는지 궁금 (페이지 이동 없이 원페이지인 경우) */
         }
         
-        .weather_btn:active {
+        .btn:active {
             background-color: #46bfdf;
+        }
+        
+        footer {
+            font-size: 11px;
+            color: #2b7494;
+            text-align: center;
         }
         
         @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
@@ -51,6 +65,11 @@
             background-color: #F3F3F3;
             font-family: 'Roboto', sans-serif;
         }
+        
+        #null_notice {
+            display: none;
+        }
+        /* 여기를 .area_select로 해서 한꺼번에 설정하고 싶은데 잘 안 된다 ㅠㅠ  */
         
         #gangseogu_select {
             display: none;
@@ -74,12 +93,6 @@
             background-color: #fff;
             box-shadow: 1px 2px 10px rgba(0, 0, 0, .2);
             /* -webkit-animation: open 2s cubic-bezier(.39, 0, .38, 1); */
-        }
-        
-        #null_notice {
-            font-weight: 400;
-            line-height: 2em;
-            display: none;
         }
         
         h1,
@@ -140,10 +153,4 @@
             font-weight: 400;
             font-size: 1em;
             line-height: 1.5em;
-        }
-        
-        footer {
-            font-size: 11px;
-            color: #2b7494;
-            text-align: center;
         }
