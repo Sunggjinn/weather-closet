@@ -25,10 +25,6 @@
             font-weight: 700;
         }
         
-        .text_box {
-            width: 120px;
-        }
-        
         .weather_btn {
             border: 0;
             line-height: 2.5;
@@ -56,12 +52,7 @@
             font-family: 'Roboto', sans-serif;
         }
         
-        #gangseogu_select,
-        #namgu_select,
-        #donggu_select,
-        #seogu_select,
-        #bukgu_select,
-        #junggu_select {
+        #gangseogu_select {
             display: none;
         }
         

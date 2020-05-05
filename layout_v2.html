@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+    <title>Weather Closet</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <!-- JS 임포트 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // <변수>
+        // value = input_area의 값
+        // selected = select box에서 선택한 값
+        // selected_unique = selected가 구 이름인 경우
+
+        // 버튼 1에 연결
+        function f1() {
+            // input_area 값을 가져와서 value로 정의한다
+            let value = $('#input_area').val();
+            f2(value);
+            f3(value);
+            console.log(value)
+        }
+
+        function f2(value) {
+            // value가 비었으면 alert를 띄우고 focus한다
+            if (value == '') {
+                alert('지역을 입력해주세요!');
+                $('#input_area').focus();
+                return;
+            }
+        }
+
+        function f3(value) {
+            // value가 중복되는 구 이름 값 중 하나면 select box를 보여준다. 
+            if (value == '강서구' || value == '강서') {
+                $("#input_area").hide();
+                $('#ws_default').hide();
+                $("#gangseogu_select").show();
+                $('#weather_btn').hide();
+                $('#samename_btn').show();
+            }
+        }
+
+        // 버튼 2에 연결
+        function f4() {
+            // user의 선택을 가져온다
+            let selected = $('#gangseogu_select').val();
+            f5(selected);
+            console.log(selected);
+            // f5를 실행한다
+        }
+
+        function f5(selected) {
+            // option 1) 다시 입력하기를 선택했다면, 새로고침한다 --> location.reload()를 써서 새로고침했더니, 무엇을 선택하든 새로고침되는 문제. 
+            // option 2) 다시 입력하기를 선택했다면, select 닫고, input_area를 가져오고, default 보여주고, weather_btn 보여주기
+            // option 3) undo f3할 수는 없나???
+            if (selected = '다시 입력하기') {
+                // location.reload();
+                $("#gangseogu_select").hide();
+                $("#input_area").show();
+                $('#ws_default').show();
+                $('#weather_btn').show();
+                $('#samename_btn').hide();
+                $('#input_area').val('');
+            } else {
+                // 구 이름을 선택했다면, 선택값을 가져온다 
+                let selected_unique = $('#gangseogu_select').val();
+                console.log(selected_unique)
+                f6();
+            }
+
+        }
+
+        function f6() {
+            // 스크래핑 결과를 받아온다 (어떻게 하는지 찾아봐야)
+            // f7을 실행한다 
+            $.ajax({
+                type: "POST",
+                url: "/",
+                data: {},
+                success: function(response) {
+                    if (response['result'] == 'success') {
+                        alert(response['msg']);
+                    }
+                }
+            })
+        }
+
+        function f7() {
+            // 결과값이 null이라면 alert를 띄우고 focus한다 
+            // null이 아니라면 ws_info를 보여주고, ws_default 닫고, input box를 비운다 
+            $.ajax({
+                type: "GET", //POST 방식으로 요청하겠다.
+                url: "/", // 이 url에 요청하겠다. 
+                data: {}, // 요청하면서 함께 줄 데이터 (GET일때는 비워둠)
+                success: function(response) {
+                    if (response['result'] == 'null') {
+                        alert('다시 입력해주세요');
+                        console.log('error: null');
+                        $('#input_area').focus();
+                    } else {
+                        $("#input_area").show();
+                        $('#weather_btn').show();
+                        $('#samename_btn').hide();
+                        $('#ws_info').show();
+                    }
+                }
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <h1>Weather Closet</h1>
+        <br>
+        <p>오늘의 날씨와 어울리는 옷차림을 알려드립니다</p>
+    </header>
+
+    <!-- main에 중요한 정보 (main은 한 개만): 날씨, 스타일 정보 -->
+    <main>
+
+        <!-- 유저가 구 정보를 입력하는 곳 -->
+        <div>
+            <!-- <div id="area_info"> -->
+            <label for="input_area" id="input_label"><span class="bold">주소 </span>(시군구 단위) :</label>
+            <input id="input_area" name="input_area" type="text" placeholder="예) 서대문구" required minlength="2" maxlength="8" size="10">
+            <!-- </div> -->
+
+
+            <!-- 이름이 같은 지역 중 어디인지 선택할 수 있는 곳 -->
+            <!-- <div class="area_select"> -->
+            <select name="gangseogu_select" id="gangseogu_select" class="text_box">
+                <option value="선택해주세요">--선택해주세요--</option>
+                <option value="서울시 강서구">서울시 강서구</option>
+                <option value="부산시 강서구">부산시 강서구</option>
+                <option value="다시 입력하기">다시 입력하기</option>
+            </select>
+            <!-- </div> -->
+
+            <!-- <select name="namgu_select" id="namgu_select" class="text_box">
+                    <option value="선택해주세요">--선택해주세요--</option>
+                    <option value="인천시 미추홀구">인천시 미추홀구</option>
+                    <option value="광주시 남구">광주시 남구</option>
+                    <option value="포항시 남구">포항시 남구</option>
+                    <option value="부산시 남구">부산시 남구</option>
+                    <option value="울산시 남구">울산시 남구</option>
+                    <option value="대구시 남구">대구시 남구</option>
+                    <option value="다시 입력하기">다시 입력하기</option>
+                </select>
+        
+                <select name="donggu_select" id="donggu_select" class="text_box">
+                    <option value="선택해주세요">--선택해주세요--</option>
+                    <option value="인천시 동구">인천시 동구</option>
+                    <option value="대전시 동구">대전시 남구</option>
+                    <option value="광주시 동구">광주시 동구</option>
+                    <option value="부산시 동구">부산시 동구</option>
+                    <option value="울산시 동구">울산시 동구</option>
+                    <option value="대구시 동구">대구시 동구</option>
+                    <option value="다시 입력하기">다시 입력하기</option>
+                </select>
+        
+                <select name="seogu_select" id="seogu_select" class="text_box">
+                    <option value="선택해주세요">--선택해주세요--</option>
+                    <option value="인천시 서구">인천시 서구</option>
+                    <option value="대전시 서구">대전시 서구</option>
+                    <option value="광주시 서구">광주시 서구</option>
+                    <option value="부산시 서구">부산시 서구</option>
+                    <option value="대구시 서구">대구시 서구</option>
+                    <option value="다시 입력하기">다시 입력하기</option>
+                </select>
+        
+                <select name="bukgu_select" id="bukgu_select" class="text_box">
+                    <option value="선택해주세요">--선택해주세요--</option>
+                    <option value="광주시 북구">광주시 북구</option>
+                    <option value="포항시 북구">포항시 북구</option>
+                    <option value="부산시 북구">부산시 북구</option>
+                    <option value="울산시 북구">울산시 북구</option>
+                    <option value="대구시 북구">대구시 북구</option>
+                    <option value="인천시 부평구">인천시 부평구</option>
+                    <option value="다시 입력하기">다시 입력하기</option>
+                </select>
+        
+                <select name="junggu_select" id="junggu_select" class="text_box">
+                    <option value="선택해주세요">--선택해주세요--</option>
+                    <option value="서울시 중구">서울시 중구</option>
+                    <option value="인천시 중구">인천시 중구</option>
+                    <option value="대전시 중구">대전시 중구</option>
+                    <option value="부산시 중구">부산시 중구</option>
+                    <option value="울산시 중구">울산시 중구</option>
+                    <option value="대구시 중구">대구시 중구</option>
+                    <option value="다시 입력하기">다시 입력하기</option>
+                </select> -->
+            <button class="btn" id="weather_btn" onclick="f1()">Click</button>
+            <button class="btn" id="samename_btn" onclick="f4()">Click</button>
+        </div>
+
+        <div id="null_notice">
+            <div class="card_null">
+                <h3>앗,
+                    <br> 입력하신 지역에 관한
+                    <br> 정보를 찾지 못했습니다.
+                    <br> 다시 입력해주세요!</h3>
+
+            </div>
+        </div>
+
+        <!-- 날씨와 스타일 정보를 보여주는 카드 -->
+        <!-- ws는 weather-style의 약자  -->
+        <div id="ws_default">
+            <div class="card">
+                <h2>서울시 종로구</h2>
+                <h3>구름 많음</h3>
+                <img class="weather_icon" src="weather-cloudy.png" alt="오늘 하늘은?" width="110" loading="lazy">
+                <h1 class="temp_now">16°</h1>
+                <div class="weather_desc">
+                    <h4>어제보다 4&deg; 높아요</h4>
+                    <h4>강수확률 0%</h4>
+                    <h4>미세먼지 좋음</h4>
+                </div>
+                <h2>How about...</h2>
+                <h4 class="style_rec">얇은 가디건/니트, 맨투맨, 얇은 자켓, 청바지</h4>
+                <img class="inner" src="inner2_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+                <img class="bottoms" src="bottoms1_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+                <img class="outer" src="outer2_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+            </div>
+        </div>
+
+        <div id="ws_info">
+            <div class="card">
+                <!-- 유저가 구 정보를 1)입력했고 2)동명이구 판별 절차를 거친 후, 입력값이 유효하면(입력 여부 O && 입력값이 동명이구이 없으면) 다음의 정보를 보여준다  -->
+                <h2>서대문구</h2>
+                <h3>맑음</h3>
+                <img class="weather_icon" src="weather-sunny.png" alt="오늘 하늘은?" width="110" loading="lazy">
+                <h1 class="temp_now">17°</h1>
+                <div class="weather_desc">
+                    <h4>어제보다 5&deg; 높아요</h4>
+                    <h4>강수확률 70%! 우산 챙기기!</h4>
+                    <h4>미세먼지 좋음</h4>
+                </div>
+                <h2>How about...</h2>
+                <h4 class="style_rec">얇은 가디건/니트, 맨투맨, 얇은 자켓, 청바지, &#x2614, &#x1F302 </h4>
+                <img class="inner" src="inner2_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+                <img class="bottoms" src="bottoms1_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+                <img class="outer" src="outer2_17-19.png" alt="뭐 입지?" width="70" loading="lazy">
+            </div>
+        </div>
+
+    </main>
+    <br>
+    <!-- footer에서 아이콘 출처, 날씨정보 출처, 개발자 정보  -->
+    <footer>
+        <p>Icons made by
+            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+                Freepik
+            </a> and from
+            <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+                Pixel perfect
+            </a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </p>
+        <p>Weather forecast from <a href="https://www.naver.com/" title="Naver">
+                Naver
+            </a>
+        </p>
+        <p>
+            &copy; 이성진, 이진명
+        </p>
+
+    </footer>
+</body>
+
+</html>
